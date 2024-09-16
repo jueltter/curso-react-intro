@@ -17,11 +17,17 @@ const defaultTodos = [
 ]
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodos);
+  const [searchValue, setSearchValue] = React.useState('');
+
+  const completedTodos = todos.filter(obj => !!obj.completed).length;
+  const totalTodos = todos.length;
+
   return (
     <>
 
-      <TodoCounter completed="2" total="5"/>
-      <TodoSearch />
+      <TodoCounter completed={completedTodos} total={totalTodos}/>
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
 
       <TodoList>
         {defaultTodos.map(todo => 
